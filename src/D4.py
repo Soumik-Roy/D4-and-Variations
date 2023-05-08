@@ -369,7 +369,7 @@ class D4():
 
     def log(self, logs):
         with open(self.log_file, 'a') as f:
-            f.write('%s\n' % ', '.join([f"{item[1]}" for item in logs]))
+            f.write('%s\n' % ' '.join([f"{item[1]}" for item in logs]))
 
     def cuda(self, *args):
         return (item.to(self.config.DEVICE) for item in args)
