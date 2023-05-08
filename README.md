@@ -1,12 +1,20 @@
-D4: Self-augmented Unpaired Image Dehazing via Density and Depth Decomposition
+# D4 and Variations
 ===============================================
-This is the PyTorch implementation of the paper 'Self-augmented Unpaired Image Dehazing via Density and Depth Decomposition', which is accepted by CVPR2022. 
+This is an extension on the the PyTorch implementation of the paper 'Self-augmented Unpaired Image Dehazing via Density and Depth Decomposition', which is accepted by CVPR-2022. 
 
 Introduction
 ---------------------------------
-In this paper, we propose a self-augmented image dehazing framework, termed D4 (Dehazing via Decomposing transmission map into Density and Depth) for haze generation and removal. Instead of merely estimating transmission maps or clean content, the proposed framework focuses on exploring scattering coefficient and depth information contained in hazy and clean images. With estimated scene depth, our method is capable of re-rendering hazy images with different thicknesses which further benefits the training of the dehazing network.
+In this paper, the Authors suggest a framework called D4 (Dehazing via Decomposing transmission map into Density and Depth) for making and getting rid of haze. Instead of just estimating transmission maps or clean content, the suggested framework looks at the scattering coefficient and depth information in both hazy and clean images. With an estimate of the scene depth, their method can re-render hazy pictures with different thicknesses, which helps train the dehazing network even more. It's important to note that the whole training process only needs unpaired hazy and clean pictures, but the scattering coefficient, depth map, and clean content were all reconstructed from a single hazy image. Extensive tests show that our method is better than current unpaired dehazing methods, even though it uses a lot fewer factors and FLOPs.
 
 ![image](d4.png)
+
+
+Run Using Jupyter / Colab Notebook
+---------------------------------
+Upload the provided Jupyter Notebook to Colab, connect to their GPU and run all the cells to reproduce all the results. 
+
+Refer to the below instructions in case you want to run the code locally without using Jupyter notebook or Google Colab.
+
 
 Prerequisites
 ---------------------------------
@@ -17,12 +25,12 @@ Prerequisites
 Datasets
 ---------------------------------
 ### 1.Testing
-We used [SOTS-indoor](https://sites.google.com/view/reside-dehaze-datasets/reside-v0), [SOTS-outdoor](https://sites.google.com/view/reside-dehaze-datasets/reside-v0)  and [I-HAZE](https://data.vision.ee.ethz.ch/cvl/ntire18//i-haze/) for testing.  
+I used [SOTS-outdoor](https://sites.google.com/view/reside-dehaze-datasets/reside-standard) Dataset for testing.  
 
 After downloading the dataset, please use scripts/flist.py to generate the file lists. For example, to generate the training set file list on the SOTS-indoor testset, you should run:
 
 ```
-python scripts/flist.py --path path_to_SOTS_indoor_hazy_path --output ./datasets/sots_test_hazy_indoor.flist
+python scripts/flist.py --path path_to_SOTS_outdoor_hazy_path --output ./datasets/sots_test_hazy_outdoor.flist
 ```
 
 And then fill the path of ground truth images in the config file.
@@ -30,11 +38,11 @@ And then fill the path of ground truth images in the config file.
 Please notice that the ground truth images of SOTS-indoor have additional white border, you can crop it first.
 
 ### 2.Training 
-For training, we used [ITS](https://sites.google.com/view/reside-dehaze-datasets/reside-standard) dataset, you can follow the operations above to generate the training file lists.
+For training, I used [SOTS-Indoor](https://sites.google.com/view/reside-dehaze-datasets/reside-standard) dataset, you can follow the operations above to generate the training file lists.
 
 ```
-python scripts/flist.py --path ITS_train_hazy_path --output ./datasets/its_train_hazy.flist
-python scripts/flist.py --path ITS_train_gt_path --output ./datasets/its_train_gt.flist
+python scripts/flist.py --path sots_train_hazy_path --output ./datasets/sots_train_hazy.flist
+python scripts/flist.py --path sots_train_gt_path --output ./datasets/sots_train_gt.flist
 ```
 
 Getting Started
@@ -71,22 +79,9 @@ python test.py --model 1 --checkpoints ./checkpoints/test_example
 ```
 
 
-Limitation
---------------------------------------
-We found that our model is sensitive to training data. The training may be unstable on images that have a wide variation in depth. 
-
-<!--
-Update
---------------------------------------
-We notice that in the supplmentary material we have uploaded the wrong version image of the network architecture, where the residual convolution part was wrongly illustrated. We put the correct version here to avoid misunderstanding. As mentioned in the supplementary material, the network architecture refers to Monocular relative depth perception with web stereo data supervision by Ke Xian et al.
-
-![image](net_architecture.png)
--->
-
-
 Citation
 --------------------------------------
-if you find our work useful, please cite:
+We have referred to the below Research Paper and Implementations:
 ```
 @inproceedings{yang2022self,
   title={Self-Augmented Unpaired Image Dehazing via Density and Depth Decomposition},
