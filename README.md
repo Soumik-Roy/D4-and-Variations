@@ -1,6 +1,6 @@
 # D4 and Variations
-===============================================
-This is an extension on the the PyTorch implementation of the paper 'Self-augmented Unpaired Image Dehazing via Density and Depth Decomposition', which is accepted by CVPR-2022. 
+
+This is an extension on the the PyTorch implementation of the paper [Self-augmented Unpaired Image Dehazing via Density and Depth Decomposition](https://openaccess.thecvf.com/content/CVPR2022/papers/Yang_Self-Augmented_Unpaired_Image_Dehazing_via_Density_and_Depth_Decomposition_CVPR_2022_paper.pdf), which is accepted by CVPR-2022. I have tried to reproduce the results from their work, by using their [Original Source Code](https://github.com/YaN9-Y/D4), and added extensions to also do Denoising using the methodologies suggested.
 
 Introduction
 ---------------------------------
