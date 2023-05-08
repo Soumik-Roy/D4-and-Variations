@@ -11,7 +11,7 @@ from .utils import Progbar, create_dir, stitch_images, imsave
 from .metrics import  PSNR_RGB
 # from torchsummary import summary
 # from ptflops import get_model_complexity_info
-
+from time import time
 
 
 class D4():

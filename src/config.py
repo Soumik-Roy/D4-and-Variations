@@ -39,14 +39,14 @@ DEFAULT_CONFIG = {
     'BATCH_SIZE': 8,                # input batch size for training
     'INPUT_SIZE': 256,              # input image size for training 0 for original size
     'SIGMA': 2,                     # standard deviation of the Gaussian filter used in Canny edge detector (0: random, -1: no edge)
-    'MAX_ITERS': 2e6,               # maximum number of iterations to train the model
+    'MAX_ITERS': 150,               # maximum number of iterations to train the model
 
     'GAN_LOSS': 'lsgan',            # nsgan | lsgan | hinge
     'GAN_POOL_SIZE': 0,             # fake images pool size
 
-    'SAVE_INTERVAL': 1000,          # how many iterations to wait before saving model (0: never)
-    'SAMPLE_INTERVAL': 1000,        # how many iterations to wait before sampling (0: never)
-    'SAMPLE_SIZE': 12,              # number of images to sample
-    'EVAL_INTERVAL': 0,             # how many iterations to wait before model evaluation (0: never)
-    'LOG_INTERVAL': 10,             # how many iterations to wait before logging training status (0: never)
+    'SAVE_INTERVAL': 10,          # how many iterations to wait before saving model (0: never)
+    'SAMPLE_INTERVAL': 5,        # how many iterations to wait before sampling (0: never)
+    'SAMPLE_SIZE': 4,              # number of images to sample
+    'EVAL_INTERVAL': 10,             # how many iterations to wait before model evaluation (0: never)
+    'LOG_INTERVAL': 5,             # how many iterations to wait before logging training status (0: never)
 }
