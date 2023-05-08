@@ -173,11 +173,11 @@ class D4():
 
 
                     noisy_images_input = self.pad_input(noisy_images)
-                    clean_images_h2c,_ = self.model.forward_h2c(noisy_images_input)
+                    clean_images_h2c,_ = self.model.forward_h2c(noisy_images_input)[0]
                     predicted_results = self.crop_result(clean_images_h2c, h, w)
 
 
-                    psnr = self.psnr(self.postprocess(clean_images), self.postprocess(predicted_results))
+                    psnr = self.psnr(self.postprocess(clean_images), self.postprocess(predicted_results)[0])
 
 
                     psnrs.append(psnr.item())
@@ -304,7 +304,7 @@ class D4():
                         print(index, save_name)
 
 
-            print('AVG times:'+str(np.mean(times)) )
+            # print('AVG times:'+str(np.mean(times)) )
             print('Total PSNR_', np.mean(psnrs))
             print('\nEnd test....')
 
@@ -369,7 +369,7 @@ class D4():
 
     def log(self, logs):
         with open(self.log_file, 'a') as f:
-            f.write('%s\n' % ' '.join([str(item[1]) for item in logs]))
+            f.write('%s\n' % ', '.join([f"{item[0]} {item[1]}" for item in logs]))
 
     def cuda(self, *args):
         return (item.to(self.config.DEVICE) for item in args)
@@ -439,7 +439,7 @@ class D4():
 
         if blur:  # use median filter to filter out peak values for visualization.
             depth = F.pad(depth,[4,4,4,4],'reflect')
-            depth = kornia.median_blur(depth,(9,9))
+            depth = kornia.filters.median_blur(depth,(9,9))
             depth = depth[:,:,3:h-3,3:w-3]
 
         D_max = torch.max(depth.reshape(n, c, -1), dim=2, keepdim=True)[0].unsqueeze(3)
