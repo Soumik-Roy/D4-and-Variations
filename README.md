@@ -6,8 +6,12 @@ Introduction
 ---------------------------------
 In this paper, the Authors suggest a framework called D4 (Dehazing via Decomposing transmission map into Density and Depth) for making and getting rid of haze. Instead of just estimating transmission maps or clean content, the suggested framework looks at the scattering coefficient and depth information in both hazy and clean images. With an estimate of the scene depth, their method can re-render hazy pictures with different thicknesses, which helps train the dehazing network even more. It's important to note that the whole training process only needs unpaired hazy and clean pictures, but the scattering coefficient, depth map, and clean content were all reconstructed from a single hazy image. Extensive tests show that our method is better than current unpaired dehazing methods, even though it uses a lot fewer factors and FLOPs.
 
-![image](d4.png)
+![image](https://github.com/Soumik-Roy/D4-and-Variations/assets/77190361/f8c19c5b-8385-4b4b-abce-cb630e484767)
 
+Exploring other Applications
+--------------------------------
+The above things were mostly all based on the existing Implementations of the authors referred from their [Source code Reporsitory](https://github.com/YaN9-Y/D4).
+I further tried to use the same framework for Denoising and Colorising images. To do this I fine tuned and trained the model on the CIFAR10 dataset. For this I festched the dataset, and modified the images by adding Salt and Pepper Noise to them, and another set by turning the images to Black and White. I saved the modified images to get a new dataset for the model to train. FInally trained the pretrained model from Original paper on these datasets. The final model for Denoising gave pretty satisfactory results, however the model for Recoloring images turned out to be ineffective. Perhaps more improvements and modifications would be required to train it for that task.
 
 Run Using Jupyter / Colab Notebook
 ---------------------------------
@@ -25,7 +29,7 @@ Prerequisites
 Datasets
 ---------------------------------
 ### 1.Testing
-I used [SOTS-outdoor](https://sites.google.com/view/reside-dehaze-datasets/reside-standard) Dataset for testing.  
+I have used [SOTS-outdoor](https://sites.google.com/view/reside-dehaze-datasets/reside-standard) Dataset for testing.  
 
 After downloading the dataset, please use scripts/flist.py to generate the file lists. For example, to generate the training set file list on the SOTS-indoor testset, you should run:
 
