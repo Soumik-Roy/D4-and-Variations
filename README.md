@@ -13,6 +13,12 @@ Exploring other Applications
 The above things were mostly all based on the existing Implementations of the authors referred from their [Source code Reporsitory](https://github.com/YaN9-Y/D4).
 I further tried to use the same framework for Denoising and Colorising images. To do this I fine tuned and trained the model on the CIFAR10 dataset. For this I festched the dataset, and modified the images by adding Salt and Pepper Noise to them, and another set by turning the images to Black and White. I saved the modified images to get a new dataset for the model to train. FInally trained the pretrained model from Original paper on these datasets. The final model for Denoising gave pretty satisfactory results, however the model for Recoloring images turned out to be ineffective. Perhaps more improvements and modifications would be required to train it for that task.
 
+![image](https://github.com/Soumik-Roy/D4-and-Variations/assets/77190361/f36eeea8-9cac-441a-9a84-b1137a8ac535)
+
+
+![image](https://github.com/Soumik-Roy/D4-and-Variations/assets/77190361/348dec22-f151-4b98-85ff-740cddf38c32)
+
+
 Run Using Jupyter / Colab Notebook
 ---------------------------------
 Upload the provided Jupyter Notebook to Colab, connect to their GPU and run all the cells to reproduce all the results. 
